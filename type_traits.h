@@ -28,6 +28,9 @@ using BoolConstant = Constant<bool, val>;
 using true_type  = BoolConstant<true>;
 using false_type = BoolConstant<false>;
 
+template <typename...>
+using Void_t = void;
+
 } // namespace myavr
 
 #endif // TYPE_TRAITS_H_INCLUDED
