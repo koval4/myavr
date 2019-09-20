@@ -31,6 +31,17 @@ using false_type = BoolConstant<false>;
 template <typename...>
 using Void_t = void;
 
+template <bool, typename T = void>
+struct enable_if {};
+
+template <typename T>
+struct enable_if<true, T> {
+    using type = T;
+};
+
+template <bool cond, typename T = void>
+using enable_if_t = typename enable_if<cond, T>::type;
+
 } // namespace myavr
 
 #endif // TYPE_TRAITS_H_INCLUDED
