@@ -42,6 +42,19 @@ struct enable_if<true, T> {
 template <bool cond, typename T = void>
 using enable_if_t = typename enable_if<cond, T>::type;
 
+template <bool cond, typename T, typename U>
+struct conditional {
+    using type = T;
+};
+
+template <typename T, typename U>
+struct conditional<false, T, U> {
+    using type = T;
+};
+
+template <bool cond, typename T, typename U>
+using conditional_t = typename conditional<cond, T, U>::type;
+
 } // namespace myavr
 
 #endif // TYPE_TRAITS_H_INCLUDED
