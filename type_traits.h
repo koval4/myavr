@@ -73,6 +73,15 @@ using is_detected = typename detail::detector<void, Op, Args...>::value;
 template <template <typename...> typename Op, typename... Args>
 inline constexpr bool is_detected_v = is_detected<Op, Args...>::value;
 
+template <typename, typename>
+struct is_same : public false_type {};
+
+template <typename T>
+struct is_same<T, T> : public true_type {};
+
+template <typename T, typename U>
+inline constexpr bool is_same_v = is_same<T, U>::value;
+
 } // namespace myavr
 
 #endif // TYPE_TRAITS_H_INCLUDED
