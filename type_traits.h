@@ -55,6 +55,24 @@ struct conditional<false, T, U> {
 template <bool cond, typename T, typename U>
 using conditional_t = typename conditional<cond, T, U>::type;
 
+namespace detail {
+template <typename AlwaysVoid, template <typename...> typename Op, typename... Args>
+struct detector {
+    using value = false_type;
+};
+
+template <template <typename...> typename Op, typename... Args>
+struct detector<Void_t<Op<Args...>>, Op, Args...> {
+    using value = true_type;
+};
+}
+
+template <template <typename...> typename Op, typename... Args>
+using is_detected = typename detail::detector<void, Op, Args...>::value;
+
+template <template <typename...> typename Op, typename... Args>
+inline constexpr bool is_detected_v = is_detected<Op, Args...>::value;
+
 } // namespace myavr
 
 #endif // TYPE_TRAITS_H_INCLUDED
