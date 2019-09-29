@@ -83,7 +83,7 @@ struct Pin {
         port.set_output_low(1 << pin_num);
     }
 
-    const Port& port;
+    const Port port;
     const int pin_num;
 };
 
