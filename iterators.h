@@ -35,6 +35,19 @@ struct BidirectionalIteratorTag : public ForwardIteratorTag { };
 
 struct RandomAccessIteratorTag : public BidirectionalIteratorTag { };
 
+template <typename Cat,
+          typename T,
+          typename Dist = ptrdiff_t,
+          typename Ptr = T*,
+          typename Ref = T&>
+struct Iterator {
+    using iterator_category = Cat;
+    using value_type = T;
+    using difference_type = Dist;
+    using pointer = Ptr;
+    using reference = Ref;
+};
+
 }
 
 #endif // ITERATORS_H_INCLUDED
