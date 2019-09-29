@@ -82,6 +82,24 @@ struct is_same<T, T> : public true_type {};
 template <typename T, typename U>
 inline constexpr bool is_same_v = is_same<T, U>::value;
 
+template <typename T>
+struct remove_reference {
+    using type = T;
+};
+
+template <typename T>
+struct remove_reference<T&> {
+    using type = T;
+};
+
+template <typename T>
+struct remove_reference<T&&> {
+    using type = T;
+};
+
+template <typename T>
+using remove_reference_t = typename remove_reference<T>::type;
+
 } // namespace myavr
 
 #endif // TYPE_TRAITS_H_INCLUDED
