@@ -25,6 +25,16 @@ struct IteratorTraitsImpl<It, Void_t<typename It::iterator_category,
 template <typename It>
 struct IteratorTraits : public IteratorTraitsImpl<It> {};
 
+struct InputIteratorTag { };
+
+struct OutputIteratorTag { };
+
+struct ForwardIteratorTag : public InputIteratorTag { };
+
+struct BidirectionalIteratorTag : public ForwardIteratorTag { };
+
+struct RandomAccessIteratorTag : public BidirectionalIteratorTag { };
+
 }
 
 #endif // ITERATORS_H_INCLUDED
